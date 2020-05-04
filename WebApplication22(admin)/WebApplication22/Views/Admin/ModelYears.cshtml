@@ -1,0 +1,54 @@
+﻿@using WebApplication22.ViewModels
+@using WebApplication22.Models
+@model ModelYearsViewModel
+
+<div class="container">
+    <h3 class="container__header">РАЗДЕЛ АДМИНИСТРАТОРА - ГОД</h3>
+    <table class="user-table">
+        <thead>
+            <tr>
+                <th>
+                    ИД
+                </th>
+                <th>
+                    Год
+                </th>
+                <th>
+                    Модель
+                </th>
+                <th>
+                    VpicID
+                </th>
+                <th>
+                    Удаление
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var m in Model.ModelYears)
+            {
+                <tr>
+                    <td>
+                        @m.ID
+                    </td>
+                    <td>
+                        @m.Year
+                    </td>
+                    <td>
+                        @m.Model.Name
+                    </td>
+                    <td>
+                        @m.VpicID
+                    </td>
+                    <td>
+                        @Html.ActionLink("Удалить", "DeleteModelYear", "Admin", new { id = m.ID }, new { })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    @if (LoginData.Login.Role != "user")
+    {
+        @Html.Partial("CreateModelYearPartial", Model.CreatedModelYear)
+    }
+</div>

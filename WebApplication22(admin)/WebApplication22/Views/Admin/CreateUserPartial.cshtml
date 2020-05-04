@@ -1,0 +1,31 @@
+﻿@using WebApplication22.Models
+@model User
+<h3 class="container__header">
+    Добавить пользователя
+</h3>
+@using (Html.BeginForm("CreateUser", "Admin", FormMethod.Post))
+{
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div>
+        @Html.LabelFor(m => m.Name)
+        @Html.TextBoxFor(m => m.Name)
+    </div>
+    <br />
+    <div>
+        @Html.LabelFor(m => m.Password)
+        @Html.TextBoxFor(m => m.Password)
+    </div>
+    <br />
+    <div>
+        @Html.LabelFor(m => m.Phone)
+        @Html.TextBoxFor(m => m.Phone)
+    </div>
+    <br />
+    <div>
+        @Html.LabelFor(m => m.Role)
+        @Html.DropDownListFor(m => m.Role, new SelectListItem[] { new SelectListItem { Value = "Manager", Text = "Manager" }, new SelectListItem { Value = "Admin", Text = "Admin" }, new SelectListItem { Value = "User", Text = "User" } })
+    </div>
+    <br />
+
+    <button class="default-button">Добавить</button>
+}

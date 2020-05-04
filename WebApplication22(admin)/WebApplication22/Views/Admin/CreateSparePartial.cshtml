@@ -1,0 +1,56 @@
+﻿@using WebApplication22.Models
+@model Spare
+<h3 class="container__header">
+    Добавить запчасть
+</h3>
+@using (Html.BeginForm("CreateSpare", "Admin", FormMethod.Post))
+{
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div>
+        @Html.LabelFor(m => m.Name)
+        @Html.TextBoxFor(m => m.Name)
+    </div>
+    <br />
+    <div>
+        @Html.LabelFor(m => m.CostOrigin)
+        @Html.TextBoxFor(m => m.CostOrigin, new { type = "number" })
+    </div>
+    <br />
+    <div>
+        @Html.LabelFor(m => m.CostReplacement, new { type = "number" })
+        @Html.TextBoxFor(m => m.CostReplacement, new { type = "number" })
+    </div>
+    <br />
+    <div>
+        @Html.LabelFor(m => m.ReplacementProduction)
+        @Html.TextBoxFor(m => m.ReplacementProduction)
+    </div>
+    <br />
+    <div>
+        @Html.LabelFor(m => m.OriginDuration, new { type = "number" })
+        @Html.TextBoxFor(m => m.OriginDuration, new { type = "number" })
+    </div>
+    <br />
+    <div>
+        @Html.LabelFor(m => m.ReplacementDuration, new { type = "number" })
+        @Html.TextBoxFor(m => m.ReplacementDuration, new { type = "number" })
+    </div>
+    <br />
+    <div>
+        @Html.LabelFor(m => m.ServiceId)
+        @Html.DropDownListFor(m => m.ServiceId, Model.Services.Select(c => new SelectListItem { Value = c.Id.ToString(), Text = c.Name }))
+    </div>
+    <br />
+    <div>
+        @Html.LabelFor(m => m.ApplicationId)
+        @Html.DropDownListFor(m => m.ApplicationId, Model.Applications.Select(c => new SelectListItem { Value = c.Id.ToString(), Text = c.Date + ", " + c.Email + ", " + c.Phone }))
+    </div>
+    <br />
+    <div>
+        @Html.HiddenFor(m => m.OrderId)
+        @Html.HiddenFor(m => m.OrderId)
+    </div>
+    <br />
+
+    <button class="default-button">Добавить</button>
+}

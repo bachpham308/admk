@@ -1,0 +1,48 @@
+﻿@using WebApplication22.ViewModels
+@using WebApplication22.Models
+@model VinsViewModel
+
+<div class="container">
+    <h3 class="container__header">РАЗДЕЛ АДМИНИСТРАТОРА - ВИН</h3>
+    <table class="user-table">
+        <thead>
+            <tr>
+                <th>
+                    ИД
+                </th>
+                <th>
+                    VIN
+                </th>
+                <th>
+                    Модель
+                </th>
+                <th>
+                    Удаление
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var m in Model.Vins)
+            {
+                <tr>
+                    <td>
+                        @m.ID
+                    </td>
+                    <td>
+                        @m.Value
+                    </td>
+                    <td>
+                        @m.ModelYear.Year
+                    </td>
+                    <td>
+                        @Html.ActionLink("Удалить", "DeleteVin", "Admin", new { id = m.ID }, new { })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    @if (LoginData.Login.Role != "user")
+    {
+        @Html.Partial("CreateVinPartial", Model.CreatedVin)
+    }
+</div>

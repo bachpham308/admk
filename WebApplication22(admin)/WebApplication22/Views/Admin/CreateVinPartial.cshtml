@@ -1,0 +1,22 @@
+﻿@using WebApplication22.Models
+@model Vin
+<h3 class="container__header">
+    Добавить вин
+</h3>
+@using (Html.BeginForm("CreateVin", "Admin", FormMethod.Post))
+{
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div>
+        @Html.LabelFor(m => m.Value)
+        @Html.TextBoxFor(m => m.Value)
+    </div>
+    <br />
+
+    <div>
+        @Html.LabelFor(m => m.ModelYearId)
+        @Html.DropDownListFor(m => m.ModelYearId, Model.ModelYears.Select(m => new SelectListItem { Value = m.ID.ToString(), Text = m.Year.ToString() }))
+    </div>
+    <br />
+
+    <button class="default-button">Добавить</button>
+}

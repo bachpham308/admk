@@ -1,0 +1,48 @@
+﻿@using WebApplication22.ViewModels
+@using WebApplication22.Models
+@model MakesViewModel
+
+<div class="container">
+    <h3 class="container__header">РАЗДЕЛ АДМИНИСТРАТОРА - ПРОИЗВОДИТЕЛИ</h3>
+    <table class="user-table">
+        <thead>
+            <tr>
+                <th>
+                    ИД
+                </th>
+                <th>
+                    Наименование
+                </th>
+                <th>
+                    VpicID
+                </th>
+                <th>
+                    Удаление
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var m in Model.Makes)
+            {
+                <tr>
+                    <td>
+                        @m.ID
+                    </td>
+                    <td>
+                        @m.Name
+                    </td>
+                    <td>
+                        @m.VpicID
+                    </td>
+                    <td>
+                        @Html.ActionLink("Удалить", "DeleteMake", "Admin", new { id = m.ID }, new { })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    @if (LoginData.Login.Role != "user")
+    {
+        @Html.Partial("CreateMakePartial", Model.CreatedMake)
+    }
+</div>

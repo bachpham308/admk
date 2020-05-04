@@ -1,0 +1,26 @@
+﻿@using WebApplication22.Models
+@model ModelYear
+<h3 class="container__header">
+    Добавить год
+</h3>
+@using (Html.BeginForm("CreateModelYear", "Admin", FormMethod.Post))
+{
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div>
+        @Html.LabelFor(m => m.Year)
+        @Html.TextBoxFor(m => m.Year, new { type = "number" })
+    </div>
+    <br />
+    <div>
+        @Html.LabelFor(m => m.VpicID)
+        @Html.TextBoxFor(m => m.VpicID, new { type = "number" })
+    </div>
+    <br />
+    <div>
+        @Html.LabelFor(m => m.ModelID)
+        @Html.DropDownListFor(m => m.ModelID, Model.Models.Select(m => new SelectListItem { Value = m.ID.ToString(), Text = m.Name }))
+    </div>
+    <br />
+
+    <button class="default-button">Добавить</button>
+}

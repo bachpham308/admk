@@ -1,0 +1,72 @@
+﻿@using WebApplication22.ViewModels
+@using WebApplication22.Models
+@model SparesViewModel
+
+<div class="container">
+    <h3 class="container__header">РАЗДЕЛ АДМИНИСТРАТОРА - ЗАПЧАСТИ</h3>
+    <table class="user-table">
+        <thead>
+            <tr>
+                <th>
+                    ИД
+                </th>
+                <th>
+                    Название
+                </th>
+                <th>
+                    Стоимость происхождение
+                </th>
+                <th>
+                    Стоимость замены
+                </th>
+                <th>
+                    Сменное производство
+                </th>
+                <th>
+                    Продолжительность
+                </th>
+                <th>
+                    Продолжительность замены
+                </th>
+                <th>
+                    Действия
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var u in Model.Spares)
+            {
+            <tr>
+                <td>
+                    @u.Id
+                </td>
+                <td>
+                    @u.Name
+                </td>
+                <td>
+                    @u.CostOrigin
+                </td>
+                <td>
+                    @u.CostReplacement
+                </td>
+                <td>
+                    @u.ReplacementProduction
+                </td>
+                <td>
+                    @u.OriginDuration
+                </td>
+                <td>
+                    @u.ReplacementDuration
+                </td>
+                <td>
+                    @Html.ActionLink("Удалить", "DeleteSpare", "Admin", new { id = u.Id }, new { })<br />
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+    @if (LoginData.Login.Role != "user")
+    {
+        @Html.Partial("CreateSparePartial", Model.CreatedSpare)
+    }
+</div>

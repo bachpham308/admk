@@ -1,0 +1,48 @@
+﻿@using WebApplication22.ViewModels
+@using WebApplication22.Models
+@model CustomersViewModel
+
+<div class="container">
+    <h3 class="container__header">РАЗДЕЛ АДМИНИСТРАТОРА - КЛИЕНТЫ</h3>
+    <table class="user-table">
+        <thead>
+            <tr>
+                <th>
+                    ИД
+                </th>
+                <th>
+                    Полное имя
+                </th>
+                <th>
+                    Телефон
+                </th>
+                <th>
+                    Удалить
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var u in Model.Customers)
+            {
+                <tr>
+                    <td>
+                        @u.Id
+                    </td>
+                    <td>
+                        @u.FullName
+                    </td>
+                    <td>
+                        @u.Phone
+                    </td>
+                    <td>
+                        @Html.ActionLink("Удалить", "DeleteCustomer", "Admin", new { id = u.Id }, new { })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    @if (LoginData.Login.Role != "user")
+    {
+        @Html.Partial("CreateCustomerPartial", Model.CreatedCustomer)
+    }
+</div>

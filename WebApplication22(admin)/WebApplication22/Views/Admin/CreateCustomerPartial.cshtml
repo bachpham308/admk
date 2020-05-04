@@ -1,0 +1,21 @@
+﻿@using WebApplication22.Models
+@model Customer
+<h3 class="container__header">
+    Добавить клиента
+</h3>
+@using (Html.BeginForm("CreateCustomer", "Admin", FormMethod.Post))
+{
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div>
+        @Html.LabelFor(m => m.FullName)
+        @Html.TextBoxFor(m => m.FullName)
+    </div>
+    <br />
+    <div>
+        @Html.LabelFor(m => m.Phone)
+        @Html.TextBoxFor(m => m.Phone)
+    </div>
+    <br />
+
+    <button class="default-button">Добавить</button>
+}

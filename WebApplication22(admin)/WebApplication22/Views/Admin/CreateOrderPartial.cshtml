@@ -1,0 +1,41 @@
+﻿@using WebApplication22.Models
+@model Order
+<h3 class="container__header">
+    Добавить заказ
+</h3>
+@using (Html.BeginForm("CreateOrder", "Admin", FormMethod.Post))
+{
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div>
+        @Html.LabelFor(m => m.Price)
+        @Html.TextBoxFor(m => m.Price, new { type = "number" })
+    </div>
+    <br />
+    <div>
+        @Html.LabelFor(m => m.CreationDate, new { type = "date" })
+        @Html.TextBoxFor(m => m.CreationDate, new { type = "date" })
+    </div>
+    <br />
+    <div>
+        @Html.LabelFor(m => m.ChangeDate, new { type = "date" })
+        @Html.TextBoxFor(m => m.ChangeDate, new { type = "date" })
+    </div>
+    <br />
+    <div>
+        @Html.LabelFor(m => m.CustomerID)
+        @Html.DropDownListFor(m => m.CustomerID, Model.Customers.Select(c => new SelectListItem { Value = c.Id.ToString(), Text = c.FullName }))
+    </div>
+    <br />
+    <div>
+        @Html.LabelFor(m => m.OrderStatusID)
+        @Html.DropDownListFor(m => m.OrderStatusID, Model.OrderStatuses.Select(c => new SelectListItem { Value = c.ID.ToString(), Text = c.Title }))
+    </div>
+    <br />
+    <div>
+        @Html.LabelFor(m => m.ModelYearId)
+        @Html.DropDownListFor(m => m.ModelYearId, Model.ModelYears.Select(c => new SelectListItem { Value = c.ID.ToString(), Text = c.Year.ToString() + ", " + c.Model.Name + ", " + c.Model.Make.Name }))
+    </div>
+    <br />
+
+    <button class="default-button">Добавить</button>
+}
